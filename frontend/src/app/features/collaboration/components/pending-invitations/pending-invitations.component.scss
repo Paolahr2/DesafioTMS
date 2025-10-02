@@ -1,0 +1,51 @@
+.pending-invitations {
+  padding: 20px;
+}
+
+.no-invitations {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+.invitation-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.invitation-info h4 {
+  margin: 0 0 8px 0;
+}
+
+.invitation-info p {
+  margin: 4px 0;
+  color: #666;
+}
+
+.invitation-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.accept-btn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.reject-btn {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}

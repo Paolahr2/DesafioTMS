@@ -1,0 +1,152 @@
+@import '@angular/material';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles */
+html, body {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Tokens de color (fallback para uso fuera de tailwind) */
+:root {
+  --color-primary: #22c55e;
+  --color-primary-dark: #16a34a;
+  --color-accent: #3b82f6;
+  --color-accent-dark: #2563eb;
+  --color-bg-soft: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-text: #1f2937;
+  --color-muted: #64748b;
+  --color-danger: #ef4444;
+}
+
+/* Scrollbar suave */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* Botón primario reutilizable */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  color: #fff;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  box-shadow: 0 8px 24px -4px rgba(0,0,0,0.08), 0 4px 12px -2px rgba(0,0,0,0.04);
+  transition: all .2s ease;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-size: .85rem;
+}
+.btn-primary:hover { background: linear-gradient(90deg, var(--color-primary-dark) 0%, var(--color-accent-dark) 100%); transform: translateY(-2px); box-shadow: 0 12px 28px -6px rgba(0,0,0,0.15); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: .55; cursor: not-allowed; }
+
+/* Contenedor modal base */
+.modal-shell { background:#fff; border-radius:1.25rem; box-shadow:0 30px 60px -15px rgba(0,0,0,.25); border:1px solid rgba(226,232,240,.6); overflow:hidden; position:relative; }
+
+/* Cabecera de formulario con gradiente */
+.form-header-gradient { background:linear-gradient(135deg, rgba(34,197,94,0.08) 0%, rgba(59,130,246,0.08) 100%); padding:2rem 2rem 1rem 2rem; border-bottom:1px solid rgba(226,232,240,.6);} 
+
+/* Inputs enfoque */
+.task-input-focus:focus { outline:none; background:#fff; box-shadow:0 0 0 2px rgba(34,197,94,.4); }
+
+/* Footer de modal */
+.modal-footer-bar { display:flex; align-items:center; justify-content:flex-end; gap:0.75rem; padding:1.25rem 1.5rem; background:#f8fafc; border-top:1px solid rgba(226,232,240,.7); }
+
+/* Botones secundarios / cancelar */
+.btn-secondary { padding:.75rem 1.25rem; font-weight:600; border-radius:.5rem; background:#f1f5f9; color:#475569; transition:background .18s ease; font-size:.85rem; }
+.btn-secondary:hover { background:#e2e8f0; }
+.btn-danger { padding:.75rem 1.25rem; font-weight:600; border-radius:.5rem; background:#ef4444; color:#fff; transition:background .18s ease; font-size:.85rem; }
+.btn-danger:hover { background:#dc2626; }
+
+/* Etiquetas y títulos dentro de modales */
+.modal-title-gradient { background:linear-gradient(135deg,#22c55e 0%,#3b82f6 100%); -webkit-background-clip:text; background-clip:text; color:transparent; font-size:1.5rem; font-weight:700; }
+
+/* Estado vacío */
+.empty-state-icon { width:3rem; height:3rem; margin:0 auto .75rem auto; opacity:.4; color:#94a3b8; }
+.empty-state-text { font-size:.875rem; color:#64748b; }
+.empty-state-sub { font-size:.75rem; margin-top:.25rem; color:#94a3b8; }
+
+/* Checklist item */
+.checklist-item-row { display:flex; align-items:center; gap:.75rem; padding:.75rem; background:#f8fafc; border-radius:.75rem; border:1px solid #e2e8f0; transition:all .18s ease; }
+.checklist-item-row:hover { background:#fff; box-shadow:0 2px 4px rgba(0,0,0,.04); }
+
+/* Transition util */
+.fade-in { animation: fadeIn 0.35s ease; }
+@keyframes fadeIn { from { opacity:0; transform: translateY(4px);} to { opacity:1; transform: translateY(0);} }
+
+/* Global Material Design error styles */
+.mat-mdc-form-field-error,
+.mat-mdc-form-field-subscript-wrapper .mat-mdc-form-field-error,
+.custom-error,
+.custom-error span {
+  color: #dc2626 !important;
+  font-size: 0.85rem !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+/* Material Menu - Fondo sólido blanco con sombra */
+.mat-mdc-menu-panel {
+  background-color: #ffffff !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.15), 0 4px 12px -2px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 12px !important;
+  border: 1px solid #e2e8f0 !important;
+  min-width: 200px !important;
+  backdrop-filter: none !important;
+  padding: 8px 0 !important;
+}
+
+.mat-mdc-menu-content {
+  background-color: #ffffff !important;
+  padding: 0 !important;
+}
+
+.mat-mdc-menu-item {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 0.875rem !important;
+  padding: 12px 16px !important;
+  height: auto !important;
+  min-height: 44px !important;
+  transition: all 0.15s ease !important;
+  background-color: #ffffff !important;
+}
+
+.mat-mdc-menu-item:hover {
+  background-color: #f1f5f9 !important;
+}
+
+.mat-mdc-menu-item .mat-icon {
+  margin-right: 12px !important;
+  font-size: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.mat-divider {
+  margin: 4px 0 !important;
+  border-top-color: #e2e8f0 !important;
+}
+
+/* Ensure error text is red in all contexts */
+.mat-form-field-error,
+.mat-error,
+.mat-mdc-form-field-error-wrapper,
+.mat-mdc-form-field-error-wrapper * {
+  color: #dc2626 !important;
+}
+

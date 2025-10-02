@@ -1,0 +1,100 @@
+<div class="create-board-dialog-overlay">
+  <div class="create-board-dialog-container">
+    <!-- Header -->
+    <div class="create-board-dialog-header">
+      <h2 class="create-board-dialog-title">Crear Tablero</h2>
+      <button class="create-board-dialog-close" (click)="onCancel()">×</button>
+    </div>
+
+    <!-- Form -->
+    <form class="create-board-dialog-form" [formGroup]="boardForm" (ngSubmit)="onSubmit()">
+      <!-- Title -->
+      <div class="create-board-dialog-field">
+        <label class="create-board-dialog-label">Nombre *</label>
+        <input class="create-board-dialog-input"
+               type="text"
+               formControlName="title"
+               placeholder="Nombre del tablero">
+        <div class="create-board-dialog-error" *ngIf="boardForm.get('title')?.hasError('required') && boardForm.get('title')?.touched">
+          El nombre es obligatorio
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="create-board-dialog-field">
+        <label class="create-board-dialog-label">Descripción</label>
+        <textarea class="create-board-dialog-textarea"
+                  formControlName="description"
+                  placeholder="Descripción opcional"></textarea>
+      </div>
+
+      <!-- Color -->
+      <div class="create-board-dialog-field">
+        <label class="create-board-dialog-label">Color *</label>
+        <div class="create-board-dialog-colors">
+          <div class="create-board-dialog-color"
+               *ngFor="let color of availableColors; trackBy: trackByColorValue"
+               [class.selected]="boardForm.get('color')?.value === color.value"
+               [style.background-color]="color.value"
+               (click)="selectColor(color.value)">
+            <span class="create-board-dialog-check" *ngIf="boardForm.get('color')?.value === color.value">✓</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Privacy -->
+      <div class="create-board-dialog-field">
+        <label class="create-board-dialog-label">Privacidad</label>
+        <div class="create-board-dialog-privacy-options">
+          <!-- Opción Privado -->
+          <div class="create-board-dialog-privacy-option"
+               [class.selected]="boardForm.get('isPublic')?.value === false"
+               (click)="selectPrivacy(false)">
+            <input type="radio"
+                   formControlName="isPublic"
+                   [value]="false"
+                   style="display: none;">
+            <div class="create-board-dialog-privacy-icon private">
+              <mat-icon>lock</mat-icon>
+            </div>
+            <div class="create-board-dialog-privacy-content">
+              <h4>Privado</h4>
+              <p>Solo tú puedes ver este tablero</p>
+            </div>
+            <mat-icon class="create-board-dialog-privacy-check" *ngIf="boardForm.get('isPublic')?.value === false">check_circle</mat-icon>
+          </div>
+
+          <!-- Opción Público -->
+          <div class="create-board-dialog-privacy-option"
+               [class.selected]="boardForm.get('isPublic')?.value === true"
+               (click)="selectPrivacy(true)">
+            <input type="radio"
+                   formControlName="isPublic"
+                   [value]="true"
+                   style="display: none;">
+            <div class="create-board-dialog-privacy-icon public">
+              <mat-icon>public</mat-icon>
+            </div>
+            <div class="create-board-dialog-privacy-content">
+              <h4>Público</h4>
+              <p>Cualquier persona puede ver este tablero</p>
+            </div>
+            <mat-icon class="create-board-dialog-privacy-check" *ngIf="boardForm.get('isPublic')?.value === true">check_circle</mat-icon>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="create-board-dialog-buttons">
+        <button class="create-board-dialog-cancel" type="button" (click)="onCancel()">
+          Cancelar
+        </button>
+        <button class="create-board-dialog-submit"
+                type="submit"
+                [disabled]="boardForm.invalid || isLoading">
+          {{ isLoading ? 'Creando...' : 'Crear Tablero' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

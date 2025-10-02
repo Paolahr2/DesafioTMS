@@ -1,0 +1,67 @@
+<div class="pending-invitations-modal">
+  <div class="modal-header">
+    <h3>Invitaciones Pendientes</h3>
+    <button mat-icon-button (click)="close()" class="close-btn">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="modal-content">
+    <div *ngIf="invitations.length === 0" class="no-invitations">
+      <mat-icon class="no-invitations-icon">notifications_none</mat-icon>
+      <p>No tienes invitaciones pendientes</p>
+    </div>
+
+    <div *ngFor="let invitation of invitations" class="invitation-item">
+      <div class="invitation-content">
+        <!-- Board Information -->
+        <div class="board-section">
+          <div class="board-header">
+            <mat-icon class="board-icon">dashboard</mat-icon>
+            <div class="board-info">
+              <div class="board-title">{{ invitation.boardTitle || 'Tablero sin nombre' }}</div>
+              <div class="board-description" *ngIf="invitation.message">
+                {{ invitation.message }}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Inviter Information -->
+        <div class="inviter-section">
+          <div class="inviter-avatar">
+            <mat-icon>person</mat-icon>
+          </div>
+          <div class="inviter-info">
+            <div class="inviter-name">
+              <span class="label">Invitado por:</span>
+              <span class="name">{{ invitation.invitedByName || 'Usuario desconocido' }}</span>
+            </div>
+            <div class="invitation-date">
+              <mat-icon class="date-icon">schedule</mat-icon>
+              <span>{{ invitation.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Actions -->
+      <div class="invitation-actions">
+        <button mat-raised-button
+                (click)="respondToInvitation(invitation, true)"
+                class="accept-btn"
+                [disabled]="processingInvitation === invitation.id">
+          <mat-icon>check</mat-icon>
+          Aceptar
+        </button>
+        <button mat-raised-button
+                (click)="respondToInvitation(invitation, false)"
+                class="reject-btn"
+                [disabled]="processingInvitation === invitation.id">
+          <mat-icon>close</mat-icon>
+          Rechazar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

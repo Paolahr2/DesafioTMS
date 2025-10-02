@@ -1,0 +1,322 @@
+/* FORMULARIO DE CREAR TABLERO - ESTILOS SIMPLES Y ROBUSTOS */
+.create-board-dialog-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 9999 !important;
+  padding: 20px !important;
+}
+
+.create-board-dialog-container {
+  background: white !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+  max-width: 450px !important;
+  width: 100% !important;
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+  position: relative !important;
+}
+
+.create-board-dialog-header {
+  background: linear-gradient(to right, #4a5568 0%, #2563eb 100%) !important;
+  color: white !important;
+  padding: 20px !important;
+  border-radius: 8px 8px 0 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.create-board-dialog-title {
+  margin: 0 !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+
+.create-board-dialog-close {
+  background: none !important;
+  border: none !important;
+  color: white !important;
+  font-size: 24px !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  transition: background 0.2s !important;
+}
+
+.create-board-dialog-close:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.create-board-dialog-form {
+  padding: 20px !important;
+}
+
+.create-board-dialog-field {
+  margin-bottom: 16px !important;
+}
+
+.create-board-dialog-field:last-child {
+  margin-bottom: 0 !important;
+}
+
+.create-board-dialog-label {
+  display: block !important;
+  font-weight: 500 !important;
+  color: #374151 !important;
+  margin-bottom: 6px !important;
+  font-size: 14px !important;
+}
+
+.create-board-dialog-input,
+.create-board-dialog-textarea {
+  width: 100% !important;
+  padding: 10px !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 4px !important;
+  font-size: 14px !important;
+  font-family: inherit !important;
+  box-sizing: border-box !important;
+}
+
+.create-board-dialog-input:focus,
+.create-board-dialog-textarea:focus {
+  outline: none !important;
+  border-color: #667eea !important;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1) !important;
+}
+
+.create-board-dialog-textarea {
+  resize: vertical !important;
+  min-height: 80px !important;
+}
+
+.create-board-dialog-error {
+  color: #ef4444 !important;
+  font-size: 12px !important;
+  margin-top: 4px !important;
+}
+
+.create-board-dialog-colors {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(35px, 1fr)) !important;
+  gap: 8px !important;
+  margin-top: 8px !important;
+}
+
+.create-board-dialog-color {
+  width: 35px !important;
+  height: 35px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  border: 2px solid transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.2s !important;
+}
+
+.create-board-dialog-color:hover {
+  transform: scale(1.1) !important;
+}
+
+.create-board-dialog-color.selected {
+  border-color: #1f2937 !important;
+  transform: scale(1.1) !important;
+}
+
+.create-board-dialog-check {
+  color: white !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* NUEVOS ESTILOS PARA OPCIONES DE PRIVACIDAD */
+.create-board-dialog-privacy-options {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 16px !important;
+  margin-top: 8px !important;
+}
+
+.create-board-dialog-privacy-option {
+  border: 2px solid #e5e7eb !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+  cursor: pointer !important;
+  background: white !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  transition: all 0.2s ease !important;
+  position: relative !important;
+}
+
+.create-board-dialog-privacy-option:hover {
+  border-color: #d1d5db !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+.create-board-dialog-privacy-option.selected {
+  border-color: #4a5568 !important;
+  background: #f0f4ff !important;
+  box-shadow: 0 4px 12px rgba(74, 85, 104, 0.1) !important;
+}
+
+.create-board-dialog-privacy-icon {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.create-board-dialog-privacy-icon.private {
+  background: #fef3c7 !important;
+  color: #d97706 !important;
+}
+
+.create-board-dialog-privacy-icon.public {
+  background: #dbeafe !important;
+  color: #2563eb !important;
+}
+
+.create-board-dialog-privacy-icon mat-icon {
+  font-size: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.create-board-dialog-privacy-content {
+  flex: 1 !important;
+}
+
+.create-board-dialog-privacy-content h4 {
+  margin: 0 0 4px 0 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+}
+
+.create-board-dialog-privacy-content p {
+  margin: 0 !important;
+  font-size: 12px !important;
+  color: #6b7280 !important;
+  line-height: 1.4 !important;
+}
+
+.create-board-dialog-privacy-check {
+  color: #4a5568 !important;
+  font-size: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+}
+
+.create-board-dialog-buttons {
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 12px !important;
+  margin-top: 24px !important;
+  padding-top: 16px !important;
+  border-top: 1px solid #e5e7eb !important;
+}
+
+.create-board-dialog-cancel,
+.create-board-dialog-submit {
+  padding: 10px 20px !important;
+  border-radius: 4px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  border: 1px solid #d1d5db !important;
+  background: white !important;
+  color: #6b7280 !important;
+  transition: all 0.2s !important;
+  min-width: 100px !important;
+}
+
+.create-board-dialog-cancel:hover {
+  background: #f9fafb !important;
+  border-color: #9ca3af !important;
+}
+
+.create-board-dialog-submit {
+  background: linear-gradient(to right, #4a5568 0%, #2563eb 100%) !important;
+  color: white !important;
+  border-color: #667eea !important;
+}
+
+.create-board-dialog-submit:hover:not(:disabled) {
+  background: linear-gradient(to right, #2d3748 0%, #1d4ed8 100%) !important;
+}
+
+.create-board-dialog-submit:disabled,
+.create-board-dialog-cancel:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .create-board-dialog-overlay {
+    padding: 16px !important;
+  }
+
+  .create-board-dialog-container {
+    max-width: 100% !important;
+  }
+
+  .create-board-dialog-header {
+    padding: 16px !important;
+  }
+
+  .create-board-dialog-title {
+    font-size: 16px !important;
+  }
+
+  .create-board-dialog-form {
+    padding: 16px !important;
+  }
+
+  .create-board-dialog-buttons {
+    flex-direction: column !important;
+  }
+
+  .create-board-dialog-cancel,
+  .create-board-dialog-submit {
+    width: 100% !important;
+  }
+
+  .create-board-dialog-colors {
+    grid-template-columns: repeat(auto-fit, minmax(32px, 1fr)) !important;
+    gap: 6px !important;
+  }
+
+  .create-board-dialog-color {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .create-board-dialog-privacy-options {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+}

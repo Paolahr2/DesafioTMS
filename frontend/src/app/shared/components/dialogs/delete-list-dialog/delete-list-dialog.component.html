@@ -1,0 +1,14 @@
+<div class="delete-list-dialog">
+  <div class="modal-header">
+    <h2 class="modal-title">Eliminar Lista</h2>
+  </div>
+  <div class="modal-body">
+    <p class="text-lg font-semibold text-gray-800 mb-2">¿Estás seguro de que quieres eliminar esta lista?</p>
+    <p class="text-sm text-gray-600 mb-4">Lista: <strong>{{ data.listTitle }}</strong></p>
+    <p class="text-sm text-red-600">Esta acción no se puede deshacer. Se eliminarán permanentemente todos los items de la lista.</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" (click)="onCancel()" class="cancel-btn">Cancelar</button>
+    <button type="button" (click)="onConfirm()" class="delete-btn">Eliminar Lista</button>
+  </div>
+</div>

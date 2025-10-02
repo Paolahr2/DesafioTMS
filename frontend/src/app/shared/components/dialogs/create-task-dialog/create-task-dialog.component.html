@@ -1,0 +1,116 @@
+
+<div class="create-board-dialog-overlay">
+  <div class="create-board-dialog-container">
+    <!-- Header -->
+    <div class="create-board-dialog-header">
+      <h2 class="create-board-dialog-title">Crear Tarea</h2>
+      <button class="create-board-dialog-close" (click)="onCancel()">×</button>
+    </div>
+
+    <!-- Form -->
+    <form class="create-board-dialog-form" (ngSubmit)="onCreate()" #taskForm="ngForm">
+      <!-- Title -->
+      <div class="create-board-dialog-field">
+        <label class="create-board-dialog-label">
+          <mat-icon>assignment</mat-icon>
+          Título *
+        </label>
+        <div class="input-with-icon">
+          <mat-icon class="input-icon">title</mat-icon>
+          <input class="create-board-dialog-input"
+                 type="text"
+                 [(ngModel)]="task.title"
+                 name="title"
+                 placeholder="Título de la tarea"
+                 required
+                 #titleInput="ngModel">
+        </div>
+        <div class="create-board-dialog-error" *ngIf="titleInput.invalid && titleInput.touched">
+          El título es obligatorio
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="create-board-dialog-field">
+        <label class="create-board-dialog-label">
+          <mat-icon>description</mat-icon>
+          Descripción
+        </label>
+        <div class="input-with-icon">
+          <mat-icon class="input-icon">notes</mat-icon>
+          <textarea class="create-board-dialog-textarea"
+                    [(ngModel)]="task.description"
+                    name="description"
+                    placeholder="Descripción opcional"></textarea>
+        </div>
+      </div>
+
+      <!-- Priority -->
+      <div class="create-board-dialog-field">
+        <label class="create-board-dialog-label">
+          <mat-icon>priority_high</mat-icon>
+          Prioridad
+        </label>
+        <select class="create-board-dialog-input" [(ngModel)]="task.priority" name="priority">
+          <option value="Low">Baja</option>
+          <option value="Medium">Media</option>
+          <option value="High">Alta</option>
+          <option value="Critical">Crítica</option>
+        </select>
+      </div>
+
+      <!-- Due Date -->
+      <div class="create-board-dialog-field">
+        <label class="create-board-dialog-label">
+          <mat-icon>calendar_today</mat-icon>
+          Fecha límite
+        </label>
+        <input class="create-board-dialog-input"
+               type="date"
+               [(ngModel)]="task.dueDate"
+               name="dueDate">
+      </div>
+
+      <!-- Tags -->
+      <div class="create-board-dialog-field">
+        <label class="create-board-dialog-label">
+          <mat-icon>label</mat-icon>
+          Etiquetas
+        </label>
+        <div class="input-with-icon">
+          <mat-icon class="input-icon">tag</mat-icon>
+          <mat-chip-grid #chipGrid class="chip-container">
+            <mat-chip-row
+              *ngFor="let tag of task.tags"
+              (removed)="removeTag(tag)"
+              class="modern-chip">
+              {{tag}}
+              <button matChipRemove>
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-chip-row>
+            <input
+              placeholder="Agregar etiqueta..."
+              [matChipInputFor]="chipGrid"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="addTag($event)"
+              class="chip-input">
+          </mat-chip-grid>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="create-board-dialog-buttons">
+        <button class="create-board-dialog-cancel" type="button" (click)="onCancel()">
+          Cancelar
+        </button>
+        <button class="create-board-dialog-submit"
+                type="submit"
+                [disabled]="!taskForm.form.valid || !task.title?.trim()">
+          Crear Tarea
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

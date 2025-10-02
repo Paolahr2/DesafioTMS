@@ -1,0 +1,127 @@
+<div class="auth-bg">
+  <!-- Floating Elements -->
+  <div class="floating-elements">
+    <!-- Small floating circles -->
+    <div class="floating-circle circle-1"></div>
+    <div class="floating-circle circle-2"></div>
+    <div class="floating-circle circle-3"></div>
+    <div class="floating-circle circle-4"></div>
+    <div class="floating-circle circle-5"></div>
+    <div class="floating-circle circle-6"></div>
+  </div>
+
+  <div class="auth-card">
+    <!-- Logo and title -->
+    <div class="card-header">
+      <div class="logo-section">
+        <div class="logo-icon">TM</div>
+        <h1 class="brand-title">TaskManager</h1>
+      </div>
+      <p class="card-subtitle">Crea tu cuenta y comienza a organizar tus tareas</p>
+    </div>
+
+    <!-- Register Form -->
+    <div class="form-content">
+      <div class="form-description">
+        <h3 class="form-title">¡Únete a nosotros!</h3>
+        <p class="form-subtitle">Crea tu cuenta para comenzar a gestionar tus tareas</p>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="auth-form">
+        <!-- Error messages -->
+        <div *ngIf="registerErrors.length > 0" class="error-messages">
+          <mat-icon class="error-icon">error_outline</mat-icon>
+          <div class="error-list">
+            <div *ngFor="let error of registerErrors" class="error-item">{{ error }}</div>
+          </div>
+        </div>
+
+        <!-- Primera fila: Nombre y Apellido -->
+        <div class="form-row">
+          <mat-form-field class="auth-input" appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="firstName" type="text" placeholder="Tu nombre">
+            <mat-icon matPrefix>person</mat-icon>
+            <mat-error class="custom-error" style="color: #dc2626 !important;" *ngIf="registerForm.get('firstName')?.invalid && (registerForm.get('firstName')?.touched || registerForm.get('firstName')?.dirty)">
+              <span style="color: #dc2626 !important;" *ngIf="registerForm.get('firstName')?.errors?.['required']">El nombre es obligatorio</span>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="auth-input" appearance="fill">
+            <mat-label>Apellido</mat-label>
+            <input matInput formControlName="lastName" type="text" placeholder="Tu apellido">
+            <mat-icon matPrefix>person</mat-icon>
+            <mat-error class="custom-error" style="color: #dc2626 !important;" *ngIf="registerForm.get('lastName')?.invalid && (registerForm.get('lastName')?.touched || registerForm.get('lastName')?.dirty)">
+              <span style="color: #dc2626 !important;" *ngIf="registerForm.get('lastName')?.errors?.['required']">El apellido es obligatorio</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Segunda fila: Usuario y Email -->
+        <div class="form-row">
+          <mat-form-field class="auth-input" appearance="fill">
+            <mat-label>Nombre de usuario</mat-label>
+            <input matInput formControlName="username" type="text" placeholder="Elige un nombre de usuario">
+            <mat-icon matPrefix>account_circle</mat-icon>
+            <mat-error class="custom-error" style="color: #dc2626 !important;" *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.touched || registerForm.get('username')?.dirty)">
+              <span style="color: #dc2626 !important;" *ngIf="registerForm.get('username')?.errors?.['required']">El nombre de usuario es obligatorio</span>
+              <span style="color: #dc2626 !important;" *ngIf="registerForm.get('username')?.errors?.['minlength']">Mínimo 3 caracteres</span>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="auth-input" appearance="fill">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput formControlName="email" type="email" placeholder="tu@email.com">
+            <mat-icon matPrefix>email</mat-icon>
+            <mat-error class="custom-error" style="color: #dc2626 !important;" *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)">
+              <span style="color: #dc2626 !important;" *ngIf="registerForm.get('email')?.errors?.['required']">El email es obligatorio</span>
+              <span style="color: #dc2626 !important;" *ngIf="registerForm.get('email')?.errors?.['email']">Ingresa un email válido</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Tercera fila: Contraseñas -->
+        <div class="form-row">
+          <mat-form-field class="auth-input" appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="password" [type]="showPassword ? 'text' : 'password'" placeholder="Crea una contraseña">
+            <mat-icon matPrefix>lock</mat-icon>
+            <button mat-icon-button matSuffix (click)="showPassword = !showPassword" type="button">
+              <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error class="custom-error" style="color: #dc2626 !important;" *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)">
+              <span style="color: #dc2626 !important;" *ngIf="registerForm.get('password')?.errors?.['required']">La contraseña es obligatoria</span>
+              <span style="color: #dc2626 !important;" *ngIf="registerForm.get('password')?.errors?.['minlength']">Mínimo 6 caracteres</span>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="auth-input" appearance="fill">
+            <mat-label>Confirmar contraseña</mat-label>
+            <input matInput formControlName="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Repite tu contraseña">
+            <mat-icon matPrefix>lock</mat-icon>
+            <button mat-icon-button matSuffix (click)="showConfirmPassword = !showConfirmPassword" type="button">
+              <mat-icon>{{ showConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error class="custom-error" style="color: #dc2626 !important;" *ngIf="registerForm.get('confirmPassword')?.invalid && (registerForm.get('confirmPassword')?.touched || registerForm.get('confirmPassword')?.dirty)">
+              <span style="color: #dc2626 !important;" *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Confirma tu contraseña</span>
+              <span style="color: #dc2626 !important;" *ngIf="registerForm.get('confirmPassword')?.errors?.['passwordMismatch']">Las contraseñas no coinciden</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Register button -->
+        <button mat-raised-button class="submit-btn" type="submit" [disabled]="isLoading">
+          <mat-icon *ngIf="!isLoading">person_add</mat-icon>
+          <mat-icon *ngIf="isLoading" class="spinning">refresh</mat-icon>
+          {{ isLoading ? 'Creando cuenta...' : 'Crear Cuenta' }}
+        </button>
+      </form>
+
+      <!-- Login link -->
+      <div class="auth-footer">
+        <p class="auth-link-text">¿Ya tienes cuenta? <a routerLink="/login" class="auth-link">Inicia sesión aquí</a></p>
+        <p class="auth-link-text"><a routerLink="/" class="auth-link">← Volver al inicio</a></p>
+      </div>
+    </div>
+  </div>
+</div>

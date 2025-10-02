@@ -1,0 +1,5 @@
+C:\Users\USER\Desktop\DesafioTM\backend\src\Presentation\TestApi\obj\Debug\net8.0\TestApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Desktop\DesafioTM\backend\src\Presentation\TestApi\obj\Debug\net8.0\TestApi.AssemblyInfoInputs.cache
+C:\Users\USER\Desktop\DesafioTM\backend\src\Presentation\TestApi\obj\Debug\net8.0\TestApi.AssemblyInfo.cs
+C:\Users\USER\Desktop\DesafioTM\backend\src\Presentation\TestApi\obj\Debug\net8.0\TestApi.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\DesafioTM\backend\src\Presentation\TestApi\obj\Debug\net8.0\TestApi.sourcelink.json

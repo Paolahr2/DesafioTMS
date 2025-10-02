@@ -1,0 +1,63 @@
+<div class="delete-task-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Eliminar Tarea</h2>
+    </div>
+
+    <div class="delete-content">
+      <div class="warning-icon" *ngIf="data.allowDelete !== false">
+        <svg class="w-16 h-16 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+        </svg>
+      </div>
+
+      <div class="warning-icon" *ngIf="data.allowDelete === false">
+        <svg class="w-16 h-16 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+      </div>
+
+      <div class="warning-message">
+        <p class="text-lg font-semibold text-gray-800 mb-2" *ngIf="data.allowDelete !== false">¿Estás seguro de que quieres eliminar esta tarea?</p>
+        <p class="text-lg font-semibold text-blue-800 mb-2" *ngIf="data.allowDelete === false">Tarea Completada</p>
+        <p class="text-gray-600 mb-4" *ngIf="data.allowDelete !== false">Esta acción no se puede deshacer.</p>
+        <p class="text-blue-600 mb-4" *ngIf="data.allowDelete === false">Las tareas completadas no se pueden eliminar por regla de negocio.</p>
+
+        <div class="task-info bg-gray-50 p-4 rounded-lg border-l-4 border-blue-500">
+          <h3 class="font-semibold text-gray-800">{{ data.task.title }}</h3>
+          <p class="text-sm text-gray-600 mt-1" *ngIf="data.task.description">{{ data.task.description }}</p>
+          <div class="flex items-center space-x-4 mt-3 text-sm text-gray-500">
+            <span class="flex items-center">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+              </svg>
+              {{ getPriorityText(data.task.priority) }}
+            </span>
+            <span class="flex items-center" *ngIf="data.task.dueDate">
+              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+              {{ data.task.dueDate | date:'dd/MM/yyyy' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button
+        type="button"
+        (click)="onCancel()"
+        class="task-cancel-btn">
+        {{ data.allowDelete === false ? 'Entendido' : 'Cancelar' }}
+      </button>
+      <button
+        type="button"
+        (click)="onDelete()"
+        class="delete-btn"
+        *ngIf="data.allowDelete !== false">
+        Eliminar Tarea
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,177 @@
+/* FORMULARIO DE INVITAR USUARIO - ESTILO SIMPLIFICADO COMO CREAR TABLERO */
+.invite-user-dialog-bg {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 9999 !important;
+  padding: 20px !important;
+}
+
+
+.invite-user-card {
+  background: white !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+  max-width: 540px !important;
+  width: 100% !important;
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+  position: relative !important;
+}
+
+.modal-header {
+  background: linear-gradient(to right, #4a5568 0%, #2563eb 100%) !important;
+  color: white !important;
+  padding: 20px !important;
+  border-radius: 8px 8px 0 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.invite-user-title {
+  margin: 0 !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+
+.task-form {
+  padding: 20px !important;
+}
+
+.form-row {
+  margin-bottom: 16px !important;
+}
+
+.form-row:last-child {
+  margin-bottom: 0 !important;
+}
+
+.invite-user-label {
+  display: block !important;
+  font-weight: 500 !important;
+  color: #374151 !important;
+  margin-bottom: 6px !important;
+  font-size: 14px !important;
+}
+
+
+.invite-user-input,
+.invite-user-textarea {
+  width: 100% !important;
+  padding: 10px 16px 10px 40px !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 4px !important;
+  font-size: 15px !important;
+  font-family: inherit !important;
+  box-sizing: border-box !important;
+}
+
+.invite-user-input:focus,
+.invite-user-textarea:focus {
+  outline: none !important;
+  border-color: #667eea !important;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1) !important;
+}
+
+.relative .absolute.left-3 {
+  left: 10px !important;
+}
+.relative .absolute.left-3.top-3\.5 {
+  top: 12px !important;
+}
+
+.invite-user-textarea {
+  resize: vertical !important;
+  min-height: 80px !important;
+}
+
+.invite-user-error {
+  color: #ef4444 !important;
+  font-size: 12px !important;
+  margin-top: 4px !important;
+}
+
+.modal-footer {
+  padding: 20px !important;
+  border-top: 1px solid #e5e7eb !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 12px !important;
+  background: #f9fafb !important;
+}
+
+.task-cancel-btn {
+  background: white !important;
+  color: #6b7280 !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 4px !important;
+  padding: 8px 16px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s !important;
+  min-width: 100px !important;
+}
+
+.task-cancel-btn:hover {
+  background: #f9fafb !important;
+  border-color: #9ca3af !important;
+}
+
+.task-create-btn {
+  background: linear-gradient(to right, #4a5568 0%, #2563eb 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 8px 16px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s !important;
+  min-width: 100px !important;
+}
+
+.task-create-btn:hover:not(:disabled) {
+  background: linear-gradient(to right, #2d3748 0%, #1d4ed8 100%) !important;
+}
+
+.task-create-btn:disabled,
+.task-cancel-btn:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .invite-user-dialog-bg {
+    padding: 16px !important;
+  }
+
+  .invite-user-card {
+    max-width: 100% !important;
+  }
+
+  .modal-header {
+    padding: 16px !important;
+  }
+
+  .invite-user-title {
+    font-size: 16px !important;
+  }
+
+  .task-form {
+    padding: 16px !important;
+  }
+
+  .modal-footer {
+    flex-direction: column !important;
+  }
+
+  .task-cancel-btn,
+  .task-create-btn {
+    width: 100% !important;
+  }
+}

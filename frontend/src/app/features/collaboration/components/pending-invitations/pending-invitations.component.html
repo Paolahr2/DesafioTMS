@@ -1,0 +1,21 @@
+<div class="pending-invitations">
+  <h3>Invitaciones Pendientes</h3>
+  <div *ngIf="invitations.length === 0" class="no-invitations">
+    No tienes invitaciones pendientes
+  </div>
+  <div *ngFor="let invitation of invitations" class="invitation-card">
+    <div class="invitation-info">
+      <h4>{{ invitation.boardTitle || 'Tablero' }}</h4>
+      <p>Invitado por: {{ invitation.invitedByName || 'Usuario' }}</p>
+      <p class="invitation-date">Enviado: {{ invitation.createdAt | date:'short' }}</p>
+    </div>
+    <div class="invitation-actions">
+      <button (click)="respondToInvitation(invitation.id, true)" class="accept-btn">
+        Aceptar
+      </button>
+      <button (click)="respondToInvitation(invitation.id, false)" class="reject-btn">
+        Rechazar
+      </button>
+    </div>
+  </div>
+</div>

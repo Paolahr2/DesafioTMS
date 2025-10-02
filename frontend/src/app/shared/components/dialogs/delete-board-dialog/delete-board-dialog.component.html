@@ -1,0 +1,47 @@
+<div class="delete-board-overlay">
+  <div class="delete-board-modal">
+    <!-- Header -->
+    <div class="modal-header">
+      <div class="header-content">
+        <div class="header-icon">
+          <mat-icon>delete_forever</mat-icon>
+        </div>
+        <div class="header-text">
+          <h2>Eliminar Tablero</h2>
+          <p>Esta acción no se puede deshacer</p>
+        </div>
+      </div>
+      <button class="close-button" (click)="onCancel()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <!-- Content -->
+    <div class="modal-content">
+      <div class="warning-message">
+        <mat-icon class="warning-icon">warning</mat-icon>
+        <div class="warning-text">
+          <h3>¿Estás seguro de que quieres eliminar este tablero?</h3>
+          <p class="board-title">"{{ data.board.title }}"</p>
+          <p class="warning-description">
+            Se eliminarán permanentemente todas las tareas y datos asociados a este tablero.
+            Esta acción no se puede deshacer.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="modal-actions">
+      <button class="cancel-btn" (click)="onCancel()" [disabled]="isDeleting">
+        <mat-icon>close</mat-icon>
+        Cancelar
+      </button>
+      <button class="delete-btn" (click)="onConfirm()" [disabled]="isDeleting">
+        <mat-icon *ngIf="!isDeleting">delete</mat-icon>
+        <mat-icon *ngIf="isDeleting" class="spinning">refresh</mat-icon>
+        {{ isDeleting ? 'Eliminando...' : 'Eliminar Tablero' }}
+      </button>
+    </div>
+  </div>
+</div>

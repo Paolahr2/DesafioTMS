@@ -1,0 +1,108 @@
+<div class="create-task-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Gestionar Miembros</h2>
+    </div>
+
+    <div class="task-form">
+      <!-- Estadísticas del tablero -->
+      <div class="stats-section">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg class="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <div class="stat-number">{{ members.length }}</div>
+              <div class="stat-label">Miembros</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg class="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <div class="stat-number">{{ getOwnerCount() }}</div>
+              <div class="stat-label">Propietarios</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg class="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <div class="stat-number">{{ getViewerCount() }}</div>
+              <div class="stat-label">Observadores</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de miembros -->
+      <div class="members-section">
+        <h4 class="section-title">Miembros del tablero</h4>
+
+        <div class="space-y-3" *ngIf="members.length > 0; else noMembers">
+          <div *ngFor="let member of members" class="member-card">
+            <div class="member-info">
+              <div class="member-avatar">
+                <span class="avatar-initials">{{ getUserInitials(member) }}</span>
+              </div>
+              <div class="member-details">
+                <div class="member-name">{{ getMemberDisplayName(member) }}</div>
+                <div class="member-role-badge" [ngClass]="getRoleClass(member.role)">
+                  {{ getRoleDisplayName(member.role) }}
+                </div>
+                <div class="member-tasks-count">
+                  <span class="tasks-icon">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  </span>
+                  {{ getAssignedTasksCount(member) }} tareas asignadas
+                </div>
+              </div>
+            </div>
+            <div class="member-actions">
+              <button
+                type="button"
+                class="remove-member-btn"
+                (click)="removeMember(member)"
+                *ngIf="canRemoveMember(member)"
+                title="Eliminar miembro">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #noMembers>
+          <div class="no-members-state">
+            <div class="no-members-icon">
+              <svg class="w-16 h-16 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3 class="no-members-title">No hay miembros</h3>
+            <p class="no-members-text">Invita a colaboradores para trabajar juntos en este tablero.</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="task-cancel-btn" (click)="onClose()">
+        Cerrar
+      </button>
+    </div>
+  </div>
+</div>

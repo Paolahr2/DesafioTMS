@@ -1,0 +1,123 @@
+<div class="create-task-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">Asignar Tarea</h2>
+    </div>
+
+    <div class="task-form">
+      <!-- Información de la tarea -->
+      <div class="task-info-section">
+        <div class="task-info-card">
+          <div class="task-info-header">
+            <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            <h3 class="task-info-title">{{ data.task.title }}</h3>
+          </div>
+          <p class="task-info-description" *ngIf="data.task.description">{{ data.task.description }}</p>
+          <div class="task-meta" *ngIf="data.task.priority || data.task.dueDate">
+            <div class="task-meta-item" *ngIf="data.task.priority">
+              <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+              </svg>
+              <span class="priority-badge" [ngClass]="getPriorityClass(data.task.priority)">
+                {{ getPriorityDisplayName(data.task.priority) }}
+              </span>
+            </div>
+            <div class="task-meta-item" *ngIf="data.task.dueDate">
+              <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+              <span class="due-date">{{ formatDate(data.task.dueDate) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de miembros -->
+      <div class="members-section">
+        <h4 class="section-title">Seleccionar miembro</h4>
+
+        <div class="members-grid" *ngIf="boardMembers.length > 0; else noMembers">
+          <div *ngFor="let member of boardMembers"
+               class="member-card"
+               [class.selected]="isCurrentlyAssigned(member)"
+               (click)="assignToUser(member)">
+            <div class="member-info">
+              <div class="member-avatar">
+                <span class="avatar-initials">{{ getUserInitials(member) }}</span>
+              </div>
+              <div class="member-details">
+                <div class="member-name">{{ getMemberDisplayName(member) }}</div>
+                <div class="member-role-badge" [ngClass]="getRoleClass(member.role)">
+                  {{ getRoleDisplayName(member.role) }}
+                </div>
+              </div>
+            </div>
+            <div class="member-status" *ngIf="isCurrentlyAssigned(member)">
+              <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #noMembers>
+          <div class="no-members-state">
+            <div class="no-members-icon">
+              <svg class="w-16 h-16 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3 class="no-members-title">No hay miembros disponibles</h3>
+            <p class="no-members-text">Invita a colaboradores para asignar tareas.</p>
+          </div>
+        </ng-template>
+
+        <!-- Botón para quitar asignación -->
+        <div class="unassign-section" *ngIf="data.task.assignedToId">
+          <button type="button" class="unassign-btn" (click)="unassignTask()">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7a4 4 0 11-8 0 4 4 0 018 0zM9 14a6 6 0 00-6 6v1h12v-1a6 6 0 00-6-6zM21 12h-6"></path>
+            </svg>
+            <span>Quitar asignación</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sección de fecha límite -->
+      <div class="due-date-section mt-6">
+        <h4 class="section-title">Fecha límite</h4>
+        <div class="due-date-content">
+          <div class="due-date-display p-4 bg-gray-50 rounded-lg mb-4" *ngIf="data.task.dueDate">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span class="text-gray-700">{{ formatDate(data.task.dueDate) }}</span>
+              </div>
+              <button type="button" class="text-gray-400 hover:text-gray-600" (click)="updateDueDate()">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <button type="button" class="due-date-btn" *ngIf="!data.task.dueDate" (click)="updateDueDate()">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+            <span>Agregar fecha límite</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="task-cancel-btn" (click)="onClose()">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>

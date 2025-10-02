@@ -1,0 +1,350 @@
+/* Estilos para el detalle del tablero estilo Trello */
+
+.board-container {
+  background-color: #f8fafc; 
+}
+
+
+
+.board-color-bg {
+  background: var(--board-primary-color, #f97316);
+}
+
+.board-color-bg-light {
+  background: var(--board-primary-lighter, #fed7aa);
+}
+
+.board-color-bg-hover:hover {
+  background: var(--board-primary-darker, #ea580c);
+}
+
+.board-color-text {
+  color: var(--board-primary-color, #f97316);
+}
+
+/* Header */
+.board-container h1 {
+  color: #1f2937; /* Gris oscuro */
+}
+
+.board-container .bg-orange-100 {
+  background-color: var(--board-primary-lighter, #fed7aa); /* Naranja claro */
+}
+
+.board-container .text-orange-800 {
+  color: var(--board-primary-darker, #9a3412); /* Naranja oscuro */
+}
+
+.board-container .bg-orange-500 {
+  background-color: var(--board-primary-color, #f97316); /* Naranja */
+}
+
+.board-container .hover\:bg-orange-600:hover {
+  background-color: var(--board-primary-darker, #ea580c); /* Naranja más oscuro */
+}
+
+/* Listas */
+.board-container .bg-white {
+  background-color: #ffffff;
+}
+
+.board-container h3 {
+  color: #1f2937;
+}
+
+/* Tarjetas */
+.board-container .bg-gray-50 {
+  background-color: #f9fafb;
+}
+
+.board-container .border-orange-400 {
+  border-color: #fb923c;
+}
+
+.board-container .text-gray-800 {
+  color: #1f2937;
+}
+
+.board-container .text-gray-600 {
+  color: #4b5563;
+}
+
+.board-container .text-gray-500 {
+  color: #6b7280;
+}
+
+.board-container .bg-orange-400 {
+  background-color: var(--board-primary-color, #fb923c);
+}
+
+.board-container .text-white {
+  color: #ffffff;
+}
+
+/* Botones */
+.board-container .bg-gray-200 {
+  background-color: #e5e7eb;
+}
+
+.board-container .text-gray-700 {
+  color: #374151;
+}
+
+.board-container .hover\:bg-gray-300:hover {
+  background-color: #d1d5db;
+}
+
+.board-container .text-gray-400 {
+  color: #9ca3af;
+}
+
+.board-container .hover\:text-gray-600:hover {
+  color: #4b5563;
+}
+
+.board-container .hover\:text-orange-600:hover {
+  color: var(--board-primary-color, #ea580c);
+}
+
+.board-container .hover\:bg-orange-50:hover {
+  background-color: var(--board-primary-lighter, #fff7ed);
+}
+
+.board-container .hover\:border-orange-300:hover {
+  border-color: var(--board-primary-color, #fdba74);
+}
+
+/* Hover effects */
+.board-container .hover\:shadow-md:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.board-container .hover\:bg-gray-50:hover {
+  background-color: #f9fafb;
+}
+
+.board-container .hover\:text-gray-800:hover {
+  color: #1f2937;
+}
+
+/* Loading spinner */
+.board-container .border-orange-500 {
+  border-color: #f97316;
+}
+
+/* Tarjetas de tareas más compactas y con colores del tablero */
+/* Tarjetas de tareas más compactas y con colores del tablero */
+/* Tarjetas estilo Trello, más separadas y cómodas */
+.task-card {
+  min-height: 80px;
+  max-width: 260px;
+  margin-bottom: 18px;
+  border-left: 4px solid var(--board-primary-color, #f97316);
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 10px;
+  padding: 16px 14px 12px 14px;
+  transition: box-shadow 0.2s;
+  position: relative;
+}
+.task-card:hover {
+  box-shadow: 0 4px 16px rgba(249,115,22,0.12);
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  border-left-color: var(--board-primary-darker, #ea580c);
+}
+
+.task-card h4 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1f2937;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.task-card p {
+  font-size: 0.7rem;
+  color: #6b7280;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.task-card .status-badge,
+.task-card .priority-badge {
+  font-size: 0.6rem;
+  padding: 1px 4px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.task-card .flex.items-center.justify-between {
+  margin-bottom: 2px;
+}
+
+.task-card .flex.items-center.space-x-2 {
+  margin-bottom: 2px;
+}
+
+/* Columnas más responsivas */
+.column-container {
+  min-height: 300px;
+  max-width: 300px;
+  margin: 0 12px;
+}
+/* Menú de prioridad tipo pestaña */
+/* Menú de prioridad tipo pestaña, más ancho y cómodo */
+.priority-tab {
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #1f2937;
+  font-weight: 500;
+  font-size: 0.85rem;
+  min-width: 80px;
+  padding: 4px 10px;
+  transition: box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.priority-tab:hover {
+  box-shadow: 0 2px 8px rgba(249,115,22,0.10);
+  background: #f9fafb;
+}
+.priority-tab mat-icon {
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+.priority-menu {
+  min-width: 120px;
+  padding: 6px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  background: #fff;
+  border: 1px solid #e5e7eb;
+}
+.priority-menu button {
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  border: none;
+  background: none;
+  text-align: left;
+  width: 100%;
+  color: #333;
+  cursor: pointer;
+}
+.priority-menu button:hover {
+  background: #f3f4f6;
+}
+
+.column-container .bg-white {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(229,231,235,0.5);
+}
+
+/* Botones del header */
+.board-header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.create-list-btn {
+  background: linear-gradient(135deg, var(--board-primary-color, #f97316) 0%, var(--board-primary-darker, #ea580c) 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+.create-list-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+}
+
+.manage-members-btn {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.manage-members-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+/* Header del tablero con colores dinámicos */
+.board-header {
+  background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(229,231,235,0.5);
+}
+
+.board-title {
+  color: var(--board-primary-color, #f97316);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Columnas con colores del tablero */
+.column-header {
+  background: linear-gradient(135deg, var(--board-primary-lighter, #fed7aa) 0%, rgba(255,255,255,0.9) 100%);
+  border-bottom: 2px solid var(--board-primary-color, #f97316);
+}
+
+/* Efectos hover mejorados */
+.task-card:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.98) 100%);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .task-card {
+    max-width: 100%;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+
+  .board-header-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .create-list-btn,
+  .manage-members-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Animaciones suaves */
+.task-card {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
